@@ -5,7 +5,7 @@ function handler(req, res) {
     const { email, name, message } = req.body;
 
     if (!email || !email.includes('@') || !name || name.trim() === '' || !message || message.trim() === '') {
-      res.status(422).send('Invalid input');
+      res.status(422).json({ message: 'Invalid input' });
       return;
     }
     const newMessage = {
@@ -19,7 +19,7 @@ function handler(req, res) {
     try {
       client = new MongoClient(process.env.MONGO_URL);
     } catch (error) {
-      res.status(500).json({ message: 'Could not connect to database' });
+      res.status(500).json({ message: 'Could not connect to database.' });
       return;
     }
 
@@ -39,8 +39,12 @@ function handler(req, res) {
     }
 
     main()
-      .then(res.status(201).json({ message: 'Message sent', messageData: newMessage }))
-      .catch(res.status(500).json({ message: 'Could not send message' }))
+      .then(() => {
+        res.status(201).json({ message: newMessage });
+      })
+      .catch(err => {
+        res.status(500).json({ message: err.message });
+      })
       .finally(() => client.close());
   }
 }
