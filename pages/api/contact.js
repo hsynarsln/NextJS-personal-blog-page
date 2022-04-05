@@ -33,17 +33,14 @@ function handler(req, res) {
 
       // the following code examples can be pasted here...
       const result = await collection.insertOne(newMessage);
-      newMessage.id = result.insertedId;
+      console.log(newMessage);
 
-      return 'done.';
+      return res.status(201).json(newMessage);
     }
 
     main()
-      .then(() => {
-        res.status(201).json({ message: newMessage });
-      })
       .catch(err => {
-        res.status(500).json({ message: err.message });
+        return res.status(500).json({ message: err.message });
       })
       .finally(() => client.close());
   }
