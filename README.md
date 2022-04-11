@@ -16,7 +16,7 @@
 
 - [Table of Contents](#table-of-contents)
 - [Overview](#overview)
-- [Built With](#built-with)
+  - [Built With](#built-with)
 - [How To Use](#how-to-use)
 - [Acknowledgements](#acknowledgements)
 - [Contact](#contact)
@@ -48,12 +48,12 @@ To clone and run this application, you'll need [Git](https://git-scm.com)
 $ git clone https://github.com/hsynarsln/NextJS-personal-blog-page.git
 
 # Install dependencies
-    > npm run dev
+    > npm install
     # or
-    > yarn dev
+    > yarn
 
 # Run the app
-$ npm start
+$ npm run dev
 ```
 
 ## Acknowledgements
